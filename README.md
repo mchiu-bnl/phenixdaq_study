@@ -23,7 +23,7 @@ To run the code (which is just a simple ROOT macro), just type at the root comma
  .L phenixdaqrate.C+
  phenixdaqrate(400,860,4,20000000);
 
-The above simulates a Run14AuAu run, where the slowest system is the VTXS (400 = CONV, 860 = 2*430 ENDAT),
+The above simulates a Run14AuAu run, where the slowest system is the VTXS (CONV = 400, ENDAT = 860 = 2*430),
 and COUNTN = 4 specifies the max number of buffered triggers.  The ENDAT is x2 because they have 2 ENDATs.
 The 20000000 means you simulate 20 million collisions. You can make this as high as you want (up to the
 integer max).
@@ -32,6 +32,7 @@ The code generates a "daqrate.root" file which contains two livetime vs rate TGr
 "model" (for the livetime vs raw rate), and the other is called "modelreal" (livetime vs accepted
 event rate).  "modelreal" is what is really used by people, since the accepted event rate is what we 
 normally call the daq rate.  Sorry for the stupid naming convention - it's a historical relic now.
+The two give the same information since accepted_rate = livetime * raw_rate.
 
 Collisions are generated randomly in every crossing except the abort gap, and then simulates the
 busy state of the DAQ to determine whether the event is accepted.  
